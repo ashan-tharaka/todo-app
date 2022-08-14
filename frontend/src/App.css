@@ -1,0 +1,50 @@
+h1 {
+  color: rgb(223, 223, 221);
+}
+Nav {
+  background-color: black;
+  margin-bottom: 50px;
+  margin-bottom: 20px;
+  position: fixed;
+  display: flex;
+}
+
+#addnote {
+  margin: 30px;
+  padding: 20px;
+}
+
+a{
+ color: white;
+ text-decoration: none;
+ margin: 10px;
+ font-size: 20px;
+
+}
+
+.todos h2{
+  margin-left: 30px;
+}
+.todos p{
+  margin-left: 30px;
+}
+
+.todos h1{
+  color:blue;
+ 
+  margin-bottom: 3vw;
+ margin-left: 4vw;
+
+}
+
+.card{
+ align-self: center;
+ align-items: left;
+ margin-left: 20vw;
+ margin-bottom: 5vw;
+
+}
+
+.card button{
+  margin: 10px;
+}
