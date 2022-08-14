@@ -5,9 +5,42 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useState } from "react";
 function Modal({ setOpenModal, todo }) {
+
+  const updateTodo =async (e) => {
+    e.preventDefault();
+    
+    let todo1=[title,content];
+
+
+    const response=await fetch("/api/todos/"+todo._id,{
+      method:"PUT",
+      body: JSON.stringify(todo1),
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    });
+    const json = await response.json();
+    if (!response.ok) {
+     
+      console.log("Not Updated");
+    }
+
+    if (response.ok) {
+      setTitle(title);
+      setContent(content);
+      
+
+      alert("Todo Updated", json);
+      window.location.reload();
+
+    }
+
+
+  };
   const [title, setTitle] = useState(todo.title);
   const [content, setContent] = useState(todo.content);
-  const updateTodo = () => {};
+  
 
   return (
     <div className="modalContainer">
@@ -40,12 +73,13 @@ function Modal({ setOpenModal, todo }) {
             <FloatingLabel
               controlId="floatingTextarea2"
               
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+             
             >
               <Form.Control
                 as="textarea"
                 placeholder="Leave a comment here"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 style={{ height: "60px" }}
               />
             </FloatingLabel>
@@ -61,7 +95,7 @@ function Modal({ setOpenModal, todo }) {
           >
             Cancel
           </Button>
-          <Button variant="success" type="submit">
+          <Button variant="success" type="submit" >
             Update
           </Button>
         </Form>
