@@ -5,6 +5,7 @@ import Todo from "./components/Todo";
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Todos from './components/Todos';
 
+
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Todo/>}/>
         <Route path="/todos" element={<Todos/>}/>
+        
+
 
       </Routes>
 
