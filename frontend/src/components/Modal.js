@@ -5,42 +5,39 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useState } from "react";
 function Modal({ setOpenModal, todo }) {
+  const [title, setTitle] = useState(todo.title);
+  const [content, setContent] = useState(todo.content);
 
-  const updateTodo =async (e) => {
+  const updateTodo = async (e) => {
     e.preventDefault();
-    
-    let todo1=[title,content];
 
+    let todo = [title, content];
 
-    const response=await fetch("/api/todos/"+todo._id,{
-      method:"PUT",
-      body: JSON.stringify(todo1),
+    const response = await fetch("/api/todos/" + todo._id, {
+      method: "PUT",
+     
       headers: {
         "Content-Type": "application/json",
+        'Access-Control-Allow-Origin':'*'
+        
       },
-
+      body: JSON.stringify(todo),
     });
     const json = await response.json();
+    alert(todo);
+
     if (!response.ok) {
-     
       console.log("Not Updated");
     }
 
     if (response.ok) {
       setTitle(title);
       setContent(content);
-      
 
       alert("Todo Updated", json);
       window.location.reload();
-
     }
-
-
   };
-  const [title, setTitle] = useState(todo.title);
-  const [content, setContent] = useState(todo.content);
-  
 
   return (
     <div className="modalContainer">
@@ -70,11 +67,7 @@ function Modal({ setOpenModal, todo }) {
 
           <>
             <Form.Label>Note</Form.Label>
-            <FloatingLabel
-              controlId="floatingTextarea2"
-              
-             
-            >
+            <FloatingLabel controlId="floatingTextarea2">
               <Form.Control
                 as="textarea"
                 placeholder="Leave a comment here"
