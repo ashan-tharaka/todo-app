@@ -33,7 +33,6 @@ function Todo() {
 
       alert("New Todo Added", json);
       window.location.reload();
-
     }
   };
   return (
